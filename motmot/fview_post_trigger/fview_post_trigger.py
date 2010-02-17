@@ -27,9 +27,9 @@ class Saver(object):
     def __init__(self,backlog,format):
         self.backlog = backlog
         self.format = format
+        self.quit_when_done = threading.Event()
         self.thread = threading.Thread(target=self.run)
         self.thread.start()
-        self.quit_when_done = threading.Event()
     def run(self):
         filename = time.strftime( 'movie%Y%m%d_%H%M%S.fmf' )
         depth = FMF.format2bpp_func(self.format)
